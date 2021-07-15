@@ -41,7 +41,14 @@ slinked_t* create(void *data, size_t size, slinked_t *next)
 // Will free all the nodes
 void destroy(void) 
 {
-
+    int count = 0;
+    slinked_t *curr = head;
+    while (curr) {
+        count++;
+        free(curr);
+        curr = curr->next;
+    }
+    printf("Freed %d nodes\n", count);
 }
 
 void push(slinked_t *node)
@@ -104,6 +111,8 @@ int main(void)
     lookup("GHI", 4);
     lookup("JKL", 4);
     lookup("XXX", 4);
+
+    destroy();
 
     return 0;
 }
