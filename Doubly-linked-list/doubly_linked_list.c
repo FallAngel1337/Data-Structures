@@ -46,12 +46,13 @@ dlinked_t* create(void *data, size_t size,
 // Free (forwards) all nodes affter usage
 void destroy(void) 
 {
-    dlinked_t *curr = head;
+    dlinked_t *curr = head, *next;
     int count = 0;
     while (curr) {
         count++;
+        next = curr->next;
         free(curr);
-        curr = curr->next;
+        curr = next;
     }
     printf("\nFreed %d nodes\n", count);
 }
