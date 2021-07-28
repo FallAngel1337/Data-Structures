@@ -42,11 +42,12 @@ slinked_t* create(void *data, size_t size, slinked_t *next)
 void destroy(void) 
 {
     int count = 0;
-    slinked_t *curr = head;
+    slinked_t *curr = head, *next;
     while (curr) {
         count++;
+        next = curr->next;
         free(curr);
-        curr = curr->next;
+        curr = next;
     }
     printf("Freed %d nodes\n", count);
 }
